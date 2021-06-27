@@ -10,20 +10,37 @@ export default class NavigationContainer extends Component {
 
     render() {
         return (
-            <nav>
-                <button>
-                    <NavLink exact to="/">Home</NavLink>
-                </button>
-                <button>
-                    <NavLink to="/about-me">About</NavLink>
-                </button>
-                <button>
-                    <NavLink to="/contact">Contact</NavLink>
-                </button>
-                <button>
-                    <NavLink to="/blog">Blog</NavLink>
-                </button>
-                {false ? <button>Add Blog</button> : null }
+            <nav className="nav-wrapper">
+                <div className="left-side">
+                    <div className="nav-link-wrapper">
+                        <NavLink exact to="/" activeClassName="nav-link-active">
+                            Home
+                        </NavLink>
+                    </div>
+
+                    <div className="nav-link-wrapper">
+                        <NavLink to="/about-me" activeClassName="nav-link-active">
+                            About
+                        </NavLink>
+                    </div>
+
+                    <div className="nav-link-wrapper">
+                        <NavLink to="/contact" activeClassName="nav-link-active">
+                            Contact
+                        </NavLink>
+                    </div>
+
+                    <div className="nav-link-wrapper">
+                        <NavLink to="/blog" activeClassName="nav-link-active">
+                            Blog
+                        </NavLink>
+                    </div>
+
+                    {/* {false ? <button>Add Blog</button> : null } */}
+                </div>
+                <div className="right-side">
+                    Jac Casper
+                </div>
                     
             </nav>
         )

@@ -8,7 +8,7 @@ import Blog from "./pages/blog";
 import PortfolioDetail from "./portfolio/portfolio-detail";
 import NoMatch from "./pages/no-match";
 import {
-  BrowserRouter as Router,
+  BrowserRouter,
   Switch,
   Route
 } from 'react-router-dom'
@@ -16,13 +16,9 @@ import {
 export default class App extends Component {
   render() {
     return (
-      <div className='app'>
-        <Router>
+      <div className='container'>
+        <BrowserRouter>
           <div>
-            <h1>John Casper's Portfolio</h1>
-            <div>
-              {moment().format("MMMM Do YYYY, h:mm:ss a")}
-            </div>
             <NavigationContainer />
             <Switch>
               <Route exact path="/" component={Home}/>
@@ -33,7 +29,7 @@ export default class App extends Component {
               <Route component={NoMatch} />
             </Switch>
           </div>
-        </Router>
+        </BrowserRouter>
       </div>
     );
   }
