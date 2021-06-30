@@ -30,6 +30,9 @@
   "bugs": {
     "url": "https://github.com/bottega-code-school/js-builder/issues"
   },
+  "browser": {
+    "child_process": false
+  },
   "homepage": "https://github.com/bottega-code-school/js-builder",
   "dependencies": {
     "ajv": "6.12.0",
