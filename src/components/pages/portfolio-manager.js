@@ -40,7 +40,6 @@ export default class PortfolioManager extends Component {
     }
 
     handleNewFormSubmission(portfolioItem) {
-        console.log("handleSuccessfulFormSubmission", portfolioItem);
         this.setState({
             portfolioItems: [portfolioItem].concat(this.state.portfolioItems)
         })
@@ -55,7 +54,6 @@ export default class PortfolioManager extends Component {
     }
 
     handleDeleteClick(item) {
-        console.log("Handle delete click");
         axios.delete(
             `https://johncasper.devcamp.space/portfolio/portfolio_items/${item.id}`, 
             {withCredentials: true}

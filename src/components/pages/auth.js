@@ -5,7 +5,6 @@ import Login from "../auth/login.js";
 export default class Auth extends Component {
     constructor(props) {
         super(props);
-        console.log("Props: ", props);
         this.handleSuccessfulAuth = this.handleSuccessfulAuth.bind(this);
         this.handleUnsuccessfulAuth = this.handleUnsuccessfulAuth.bind(this);
     }

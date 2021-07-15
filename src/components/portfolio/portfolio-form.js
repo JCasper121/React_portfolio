@@ -39,7 +39,6 @@ export default class PortfolioForm extends Component {
     }
 
     deleteImage(imageType) {
-        console.log(imageType);
         axios.delete(
             `https://api.devcamp.space/portfolio/delete-portfolio-image/${this.state.id}?image_type=${imageType}`,
             {withCredentials: true}
@@ -140,7 +139,6 @@ export default class PortfolioForm extends Component {
     }
 
     handleChange(event) {
-        console.log("Handle change: ", event);
         this.setState({
             [event.target.name]: [event.target.value]
         })

@@ -30,7 +30,6 @@ export default class PortfolioContainer extends Component {
         axios.get('https://johncasper.devcamp.space/portfolio/portfolio_items')
             .then(response => {
                 // handle success
-                console.log(response);
                 this.setState({
                     data: response.data.portfolio_items
                 })
