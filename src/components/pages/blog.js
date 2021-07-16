@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import {Link} from "react-router-dom";
 import axios from "axios";
 import BlogItem from "../blog/blog-item";
+import BlogModal from "../modals/blog-modal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 class Blog extends Component {
@@ -12,21 +13,34 @@ class Blog extends Component {
             totalCount: 0,
             currentPage: 0,
             isLoading: true,
+            blogModalIsOpen: false
         })
 
         this.getBlogItems = this.getBlogItems.bind(this);
-        this.activateInfiniteScroll();
+        this.onScroll = this.onScroll.bind(this);
+        window.addEventListener('scroll', this.onScroll, false);
+        this.handleNewBlogClick = this.handleNewBlogClick.bind(this);
+        this.handleModalClose = this.handleModalClose.bind(this);
     }
 
-    activateInfiniteScroll() {
-        window.onscroll = () => {
-            if(this.state.isLoading || this.state.blogItems.length === this.state.totalCount ) {
-                return;
-            }
-            if(window.innerHeight + document.documentElement.scrollTop === document.documentElement.offsetHeight){
-                this.getBlogItems();
-            }
+    handleModalClose() {
+        this.setState({ 
+            blogModalIsOpen: false
+        })
+    }
 
+    handleNewBlogClick() {
+        this.setState({
+            blogModalIsOpen: true
+        })
+    }
+
+    onScroll() {
+        if(this.state.isLoading || this.state.blogItems.length === this.state.totalCount ) {
+            return;
+        }
+        if(window.innerHeight + document.documentElement.scrollTop === document.documentElement.offsetHeight){
+            this.getBlogItems();
         }
     }
 
@@ -52,12 +66,24 @@ class Blog extends Component {
         this.getBlogItems();
     }
 
+    componentWillUnmount() {
+        window.removeEventListener("scroll", this.onScroll, false);
+    }
+
     render() {
         const blogRecords = this.state.blogItems.map((blogItem) => {
             return <BlogItem key={blogItem.id} blogItem={blogItem} />;
         })
         return (
             <div className="blog-container">
+                <BlogModal 
+                    modalIsOpen={this.state.blogModalIsOpen}
+                    handleModalClose={this.handleModalClose}/>
+
+                <div className="new-blog-link">
+                    <a onClick={this.handleNewBlogClick}>New Blog</a>
+                </div>
+
                 <div className="content-container">
                     {blogRecords}
                 </div>
